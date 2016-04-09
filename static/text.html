@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="http://www.x3dom.org/download/1.7.1/x3dom.css"></link>
+    <script type="text/javascript" src="http://www.x3dom.org/download/1.7.1/x3dom-full.js"></script>
+</head>
+<body>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile="Immersive" version="4.0" xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-4.0.xsd' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance'>
+    <Scene>
+                    <Transform>            
+                        <Shape>
+                            <Text id="text" string='"FOO"'>
+                                <FontStyle family='"SERIF"' justify='"MIDDLE" "MIDDLE"' size="5"></FontStyle>
+                            </Text>
+                            <Appearance>
+                                <Material diffuseColor='0 0 1'></Material>
+                            </Appearance>
+                        </Shape> 
+                    </Transform>               
+    </Scene>
+</X3D>
+</body>
+<script>
+	document.getElementById('text').setAttribute('string', '"Node\\\"\\\"\\\""');
+</script>
+</html>

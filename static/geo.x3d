@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">
+<X3D profile='Immersive' version='3.3' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.3.xsd' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance'>
+    <Scene>
+        <NavigationInfo type='"ANY" "WALK" "EXAMINE" "FLY" "LOOKAT"'/>
+        <Viewpoint DEF='Tour' description='Tour Views'/>
+        <Viewpoint position='0 0 4' description='sphere in road'/>
+        <Background backUrl='"bBK.png" "http://coderextreme.net/bug/bBK.png"' bottomUrl='"bBT.png" "http://coderextreme.net/bug/bBT.png"' frontUrl='"bFR.png" "http://coderextreme.net/bug/bFR.png"' leftUrl='"bLF.png" "http://coderextreme.net/bug/bLF.png"' rightUrl='"bRT.png" "http://coderextreme.net/bug/bRT.png"' topUrl='"bTP.png" "http://coderextreme.net/bug/bTP.png"'/>
+        <Transform DEF='Rose01'>
+            <Shape>
+                <Sphere/>
+                <Appearance DEF='_01_-_Default'>
+                    <Material diffuseColor='0.7 0.7 0.7' specularColor='0.5 0.5 0.5'/>
+                    <ComposedCubeMapTexture containerField='texture'>
+                        <ImageTexture url='"bBK.png" "http://coderextreme.net/bug/bBK.png"' containerField='back'/>
+                        <ImageTexture url='"bBT.png" "http://coderextreme.net/bug/bBT.png"' containerField='bottom'/>
+                        <ImageTexture url='"bFR.png" "http://coderextreme.net/bug/bFR.png"' containerField='front'/>
+                        <ImageTexture url='"bLF.png" "http://coderextreme.net/bug/bLF.png"' containerField='left'/>
+                        <ImageTexture url='"bRT.png" "http://coderextreme.net/bug/bRT.png"' containerField='right'/>
+                        <ImageTexture url='"bTP.png" "http://coderextreme.net/bug/bTP.png"' containerField='top'/>
+                    </ComposedCubeMapTexture>
+                    <ComposedShader DEF='ComposedShader' containerField='shaders' language='GLSL'>
+                        <field name='cubeMap' accessType='inputOutput' type='SFInt32' value='0'/>
+                        <field name='chromaticDispersion' accessType='inputOutput' type='SFVec3f' value='0.98 1 1.033'/>
+                        <field name='bias' accessType='inputOutput' type='SFFloat' value='0.5'/>
+                        <field name='scale' accessType='inputOutput' type='SFFloat' value='0.5'/>
+                        <field name='power' accessType='inputOutput' type='SFFloat' value='2'/>
+                        <ShaderPart url='"cobweb.vs"' type="VERTEX" containerField='parts'>
+			</ShaderPart>
+                        <ShaderPart url='"bubbles.fs"' containerField='parts' type='FRAGMENT'>
+			</ShaderPart>
+                    </ComposedShader>
+                </Appearance>
+            </Shape>
+        </Transform>
+    </Scene>
+</X3D>

@@ -1,0 +1,123 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 CourierNewPSMT;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red127\green127\blue127;\red114\green44\blue253;}
+\vieww12000\viewh15840\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs36 \cf0 Introducing: \'a0The X3D JSON Loader (1.1.2 beta) and X3D JSON Prototype Expander (1.0 beta)
+\fs24 \
+\
+For a Quick Start, edit flipper.html and replace flipper.json with your JSON URL and put flipper.html, X3DJSONLD.js and loaderJQuery.js on your web server.  Then open flipper.html in your web browser.\
+\
+Good luck.\
+\
+I still have extra stuff in the global scope of JavaScript\'97let people know this. \'a0Pull requests and forks are welcome, as long as you agree to the license.\
+\
+\cf2 License is here:\'a0{\field{\*\fldinst{HYPERLINK "https://github.com/coderextreme/X3DJSONLD/blob/master/LICENSE"}}{\fldrslt https://github.com/coderextreme/X3DJSONLD/blob/master/LICENSE}} Repository is here:\'a0{\field{\*\fldinst{HYPERLINK "https://github.com/coderextreme/X3DJSONLD/"}}{\fldrslt https://github.com/coderextreme/X3DJSONLD/}}\
+\
+For a web browser, \'a0a live, development version of the X3D JSON loader (I\'a0recommend downloading locally or forking) in your HTML, put:\
+\
+\
+
+\f1\fs22 \cf3 <script type="text/javascript" src="{\field{\*\fldinst{HYPERLINK "https://raw.githubusercontent.com/coderextreme/X3DJSONLD/master/X3DJSONLD.js"}}{\fldrslt 
+\f0 https://raw.githubusercontent.com/coderextreme/X3DJSONLD/master/X3DJSONLD.js}}"></script>
+\f0 \
+
+\f2 \cf2 \
+
+\f0\fs24 somewhere in the script (see index.html),\
+\
+call\
+
+\f2\fs22 \
+
+\f1 \cf3 loadX3DJS(json, url, xml, NS);\
+\cf2 \uc0\u8232 Then append the element to your DOM:\
+\
+
+\f3\fs18 \cf3 document.querySelector(selector).appendChild(loadX3DJS(json, url, xml));
+\f0\fs24 \cf2 \
+\
+and call:\
+\
+\cf3 x3dom.reload();\
+
+\f2\fs22 \cf2 \
+
+\f1 selector
+\f2  
+\f0 is the CSS selector which you want to append the X3DOM HTML code to.
+\fs24 \
+
+\f1\fs22 json
+\f2  
+\f0 is the X3D JSON you want to display.
+\fs24 \
+
+\f1\fs22 url
+\f2  
+\f0 is used for resolving URLs in the X3D JSON. \'a0Should be similar or the same as the URL you passed to retrieve the JSON from the server.
+\fs24 \
+
+\f1\fs22 xml
+\f2  
+\f0 is the array or LOG for inclusion into Cobweb via createX3DFromString, this would normally work something like:\
+\
+
+\f3\fs18 	\cf3 var browser = X3D.getBrowser(document.querySelector("X3D"));\
+       browser.replaceWorld(browser.createX3DFromString(xml.join("\\n"));
+\f0\fs24 \
+
+\f1\fs22 \cf2 \
+NS is the namespace to use when creating elements in the DOM for the XML Serializer.  {\field{\*\fldinst{HYPERLINK "http://www.w3.org/1999/xhtml"}}{\fldrslt 
+\f3\fs18 http://www.w3.org/1999/xhtml}}
+\f3\fs18  normally works for X3DOM and {\field{\*\fldinst{HYPERLINK "http://www.web3d.org/specifications/x3d-namespace"}}{\fldrslt http://www.web3d.org/specifications/x3d-namespace}} normally works for Cobweb.  Leaving NS off is also acceptable, but may lead to results you don't like.\
+
+\f0\fs24 \
+Sample code for cobweb into an iframe with id cobwebframe (thank you Andreas Plesch):\
+\
+
+\f1\fs22 \cf3 var content = xml.join("\\n");
+\fs24 \
+
+\fs22 var cobwebWindow = document.getElementById("cobwebframe").contentWindow ;
+\fs24 \
+
+\fs22 var cobwebEle = cobwebWindow.document.getElementById("x3dele");\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 var browser = cobwebWindow.X3D.getBrowser(cobwebEle);
+\fs24 \
+
+\fs22 browser.replaceWorld(browser.createX3DFromString(content));
+\fs24 \
+\cf2 \
+
+\f2\fs22 \
+
+\f0\fs24 For the prototype expander a live, development version (I\'a0recommend downloading locally or forking) in your HTML, put:\
+
+\f2\fs22 \
+
+\f1 \cf3 <script type="text/javascript" src="{\field{\*\fldinst{HYPERLINK "https://raw.githubusercontent.com/coderextreme/X3DJSONLD/master/PrototypeExpander.js"}}{\fldrslt 
+\f0\fs24 https://raw.githubusercontent.com/coderextreme/X3DJSONLD/master/PrototypeExpander.js}}"></script>
+\f0\fs24 \cf2 \
+
+\f2\fs22 \
+
+\f0\fs24 then call (does not modify extern protos yet):\
+
+\f2\fs22 \
+
+\f1 \cf3 prototypeExpander(json, scope);
+\f0\fs24 \
+
+\f2\fs22 \cf2 \
+
+\f1\fs24 json
+\f0  is the X3DJSON you want to expand protos for (also modifies the parameter as output)\
+
+\f1 scope
+\f0  is a scope string added to DEF, name and id attributes and route fromNode and toNode\'92s. \'a0\'93\'94 is fine for the top level call.\
+\
+\
+There is a lot of useful code in loaderJQuery.js.  index.html (for protos) and flipper.html (for the base loader) are good examples.}
