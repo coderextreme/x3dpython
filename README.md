@@ -2,6 +2,7 @@
 
 ```
 git clone https://github.com/coderextreme/x3dpython/
+cd x3dpython
 ./manage.py collectstatic
 ./manage.py runserver
 ```
